@@ -14,7 +14,7 @@
         "phpstan/phpstan": "^1.10"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.35",
+        "ergebnis/composer-normalize": "^2.31",
         "phpunit/phpunit": "^10.3"
     },
     "minimum-stability": "stable",
