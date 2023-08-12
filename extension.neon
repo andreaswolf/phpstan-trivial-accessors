@@ -1,0 +1,9 @@
+
+services:
+  - class: AndreasWolf\PhpstanTrivialAccessors\Rules\SimpleGetterCorrectPropertyName
+    tags:
+        - phpstan.rules.rule
+
+  - class: AndreasWolf\PhpstanTrivialAccessors\Rules\SimpleSetterCorrectPropertyName
+    tags:
+        - phpstan.rules.rule
