@@ -45,7 +45,11 @@ jobs:
         command:
           - "php:static"
           - "php:test"
+          - "php:style:check"
         composer-dependencies: ["lowest", "highest"]
+        exclude:
+          - command: 'php:style:check'
+            composer-dependencies: 'lowest'
 
   composer-normalize:
     name: "Composer normalization check"

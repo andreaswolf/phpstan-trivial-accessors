@@ -15,6 +15,7 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.31",
+        "friendsofphp/php-cs-fixer": "^3.22",
         "phpunit/phpunit": "^10.3"
     },
     "minimum-stability": "stable",
@@ -34,6 +35,8 @@
         }
     },
     "scripts": {
+        "php:style:check": "@php:style:fix --dry-run",
+        "php:style:fix": "php-cs-fixer fix --diff",
         "php:static": "phpstan analyze",
         "php:test": "phpunit tests/"
     }
