@@ -34,6 +34,7 @@
         }
     },
     "scripts": {
-        "php:static": "phpstan analyze"
+        "php:static": "phpstan analyze",
+        "php:test": "phpunit tests/"
     }
 }
