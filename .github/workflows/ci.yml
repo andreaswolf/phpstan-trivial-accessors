@@ -26,8 +26,16 @@ jobs:
           key: "php${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.json') }}"
           path: ~/.cache/composer
           restore-keys: "php${{ matrix.php-version }}-composer-\n"
-      - name: "Install Composer dependencies"
-        run: "composer install --no-progress"
+      - name: "Install lowest dependencies with composer"
+        if: "matrix.composer-dependencies == 'lowest'"
+        run: |
+          composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest
+          composer show
+      - name: "Install highest dependencies with composer"
+        if: "matrix.composer-dependencies == 'highest'"
+        run: |
+          composer update --no-ansi --no-interaction --no-progress --with-dependencies
+          composer show
       - name: "Run command"
         run: "composer ${{ matrix.command }}"
     strategy:
@@ -37,3 +45,4 @@ jobs:
         command:
           - "php:static"
           - "php:test"
+        composer-dependencies: ["lowest", "highest"]
