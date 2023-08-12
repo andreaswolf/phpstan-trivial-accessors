@@ -32,5 +32,8 @@
         "allow-plugins": {
             "ergebnis/composer-normalize": true
         }
+    },
+    "scripts": {
+        "php:static": "phpstan analyze"
     }
 }
