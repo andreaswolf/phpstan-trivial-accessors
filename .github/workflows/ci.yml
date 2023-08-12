@@ -1,0 +1,79 @@
+
+name: CI with Composer scripts
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  code-quality-matrix:
+    name: "Code quality checks"
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ matrix.php-version }}"
+          coverage: none
+          tools: composer:v2.5
+      - name: "Show Composer version"
+        run: composer --version
+      - name: "Cache dependencies installed with composer"
+        uses: actions/cache@v3
+        with:
+          key: "php${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.json') }}"
+          path: ~/.cache/composer
+          restore-keys: "php${{ matrix.php-version }}-composer-\n"
+      - name: "Install lowest dependencies with composer"
+        if: "matrix.composer-dependencies == 'lowest'"
+        run: |
+          composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest
+          composer show
+      - name: "Install highest dependencies with composer"
+        if: "matrix.composer-dependencies == 'highest'"
+        run: |
+          composer update --no-ansi --no-interaction --no-progress --with-dependencies
+          composer show
+      - name: "Run command"
+        run: "composer ${{ matrix.command }}"
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.1", "8.2"]
+        command:
+          - "php:static"
+          - "php:test"
+          - "php:style:check"
+        composer-dependencies: ["lowest", "highest"]
+        exclude:
+          - command: 'php:style:check'
+            composer-dependencies: 'lowest'
+
+  composer-normalize:
+    name: "Composer normalization check"
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+          coverage: none
+          tools: composer:v2.5
+      - name: "Show Composer version"
+        run: composer --version
+      - name: "Cache dependencies installed with composer"
+        uses: actions/cache@v3
+        with:
+          key: "php8.1-composer-${{ hashFiles('**/composer.json') }}"
+          path: ~/.cache/composer
+          restore-keys: "php8.1-composer-\n"
+      - name: "Install dependencies with composer"
+        run: |
+          composer install
+          composer show
+      - name: "Run command"
+        run: "composer normalize"

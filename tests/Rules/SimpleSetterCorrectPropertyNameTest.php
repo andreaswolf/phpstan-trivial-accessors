@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AndreasWolf\PhpstanTrivialAccessors\Tests\Rules;
@@ -22,15 +23,15 @@ class SimpleSetterCorrectPropertyNameTest extends RuleTestCase
         $this->analyse([__DIR__ . '/data/simple-setters.php'], [
             [
                 'A method called set* must assign the value to a variable',
-                15,
+                17,
             ],
             [
                 'Method setFoo() should assign to $foo, but assigns to $bar',
-                26,
+                29,
             ],
             [
                 'A method called set* must not be empty, but assign the passed value to a variable',
-                35,
+                39,
             ]
         ]);
     }
