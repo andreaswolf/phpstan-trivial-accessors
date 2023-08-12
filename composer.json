@@ -1,0 +1,36 @@
+{
+    "name": "andreaswolf/phpstan-trivial-accessors",
+    "description": "Verifies that simple getter/setter methods access the correct variables",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Andreas Wolf",
+            "email": "dev@a-w.io"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "phpstan/phpstan": "^1.10"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.35",
+        "phpunit/phpunit": "^10.3"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "AndreasWolf\\PhpstanTrivialAccessors\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AndreasWolf\\PhpstanTrivialAccessors\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    }
+}
