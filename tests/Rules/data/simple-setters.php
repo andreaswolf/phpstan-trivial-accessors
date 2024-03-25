@@ -1,6 +1,7 @@
 <?php
 
-class TrivialSetterWithCorrectPropertyName {
+class TrivialSetterWithCorrectPropertyName
+{
     private string $foo;
 
     public function setFoo(string $foo): void
@@ -9,7 +10,8 @@ class TrivialSetterWithCorrectPropertyName {
     }
 }
 
-class SimpleSetterWithoutAssign {
+class SimpleSetterWithoutAssign
+{
     private string $foo;
 
     public function setFoo(string $foo): void
@@ -18,7 +20,8 @@ class SimpleSetterWithoutAssign {
     }
 }
 
-class SimpleSetterWithWrongVariableName {
+class SimpleSetterWithWrongVariableName
+{
     private string $foo;
 
     private string $bar;
@@ -29,7 +32,8 @@ class SimpleSetterWithWrongVariableName {
     }
 }
 
-class EmptySetter {
+class EmptySetter
+{
     private string $foo;
 
     public function setFoo(string $foo): void

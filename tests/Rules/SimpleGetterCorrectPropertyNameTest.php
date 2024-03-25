@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AndreasWolf\PhpstanTrivialAccessors\Tests\Rules;
@@ -22,15 +23,15 @@ class SimpleGetterCorrectPropertyNameTest extends RuleTestCase
         $this->analyse([__DIR__ . '/data/simple-getters.php'], [
             [
                 'A method called get* must not be empty, but return a value',
-                13,
+                15,
             ],
             [
                 'A method called get* should return a local object variable',
-                19,
+                22,
             ],
             [
                 'Method getFoo() should return $foo, but returns $bar',
-                30,
+                34,
             ],
         ]);
     }

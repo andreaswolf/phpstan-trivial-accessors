@@ -1,6 +1,7 @@
 <?php
 
-class TrivialGetterWithCorrectPropertyName {
+class TrivialGetterWithCorrectPropertyName
+{
     private string $foo;
 
     public function getFoo(): string
@@ -9,20 +10,23 @@ class TrivialGetterWithCorrectPropertyName {
     }
 }
 
-class EmptyGetter {
+class EmptyGetter
+{
     public function getFoo()
     {
     }
 }
 
-class GetterReturningConstantValue {
+class GetterReturningConstantValue
+{
     public function getFoo()
     {
         return 'foo';
     }
 }
 
-class GetterReturningWrongClassVariable {
+class GetterReturningWrongClassVariable
+{
     private string $foo;
 
     private string $bar;
